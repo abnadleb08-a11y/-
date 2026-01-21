@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم RUNIVO CAFE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === نظام ألوان اللوحة === */
+        :root {
+            --sidebar-width: 280px;
+            --header-height: 70px;
+            --primary-color: #2C3E50;
+            --secondary-color: #3498DB;
+            --accent-color: #D4AF37;
+            --success-color: #27AE60;
+            --warning-color: #F39C12;
+            --danger-color: #E74C3C;
+            --light-color: #F8F9FA;
+            --dark-color: #343A40;
+            --gray-color: #6C757D;
+            --sidebar-bg: #1A1F2C;
+            --sidebar-active: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: var(--dark-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* === شاشة الدخول === */
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1A1F2C 100%);
+        }
+
+        .login-card {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .login-logo {
+            margin-bottom: 30px;
+        }
+
+        .login-logo i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .login-logo h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--secondary-color), #2980B9);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .login-info {
+            margin-top: 20px;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        /* === لوحة التحكم === */
+        .admin-dashboard {
+            display: none;
+            width: 100%;
+        }
+
+        /* السايدبار */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            color: white;
+            height: 100vh;
+            position: fixed;
+            right: 0;
+            top: 0;
+            overflow-y: auto;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .admin-brand i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .admin-brand span {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            list-style: none;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 25px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-right: 4px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-right-color: var(--accent-color);
+        }
+
+        .nav-link.active {
+            background: var(--sidebar-active);
+            color: white;
+            border-right-color: var(--accent-color);
+        }
+
+        .nav-link i {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            margin-right: var(--sidebar-width);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .content-header {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* البطاقات الإحصائية */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .stat-card:nth-child(1) .stat-icon {
+            background: linear-gradient(135deg, #E3F2FD, #2196F3);
+            color: #2196F3;
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            background: linear-gradient(135deg, #E8F5E9, #4CAF50);
+            color: #4CAF50;
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            background: linear-gradient(135deg, #FFF3E0, #FF9800);
+            color: #FF9800;
+        }
+
+        .stat-card:nth-child(4) .stat-icon {
+            background: linear-gradient(135deg, #F3E5F5, #9C27B0);
+            color: #9C27B0;
+        }
+
+        .stat-info h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-info p {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        /* الجداول */
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f8f9fa;
+            padding: 18px 20px;
+            text-align: right;
+            font-weight: 600;
+            color: var(--dark-color);
+            border-bottom: 2px solid #eee;
+        }
+
+        td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #eee;
+            color: var(--gray-color);
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-cancelled {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        /* الأشكال */
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        /* التنبيهات */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .alert-success {
+            background: #D4EDDA;
+            color: #155724;
+            border: 1px solid #C3E6CB;
+        }
+
+        .alert-warning {
+            background: #FFF3CD;
+            color: #856404;
+            border: 1px solid #FFEEBA;
+        }
+
+        .alert-danger {
+            background: #F8D7DA;
+            color: #721c24;
+            border: 1px solid #F5C6CB;
+        }
+
+        /* محتوى التبويب */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* التجاوب */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(100%);
+                transition: transform 0.3s;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-right: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--primary-color);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شاشة الدخول -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fas fa-lock"></i>
+                <h2>لوحة تحكم RUNIVO</h2>
+                <p style="color: #666; margin-top: 10px;">الدخول للمديرين فقط</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" value="admin" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" value="runivo123" required>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    تسجيل الدخول
+                </button>
+                
+                <div class="login-info">
+                    اسم المستخدم: admin<br>
+                    كلمة المرور: runivo123
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- لوحة التحكم -->
+    <div class="admin-dashboard" id="adminDashboard">
+        <!-- السايدبار -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="admin-brand">
+                    <i class="fas fa-cogs"></i>
+                    <span>RUNIVO ADMIN</span>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="#dashboard" class="nav-link active" data-tab="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>لوحة التحكم</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#menu" class="nav-link" data-tab="menu">
+                            <i class="fas fa-utensils"></i>
+                            <span>إدارة المنيو</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#reservations" class="nav-link" data-tab="reservations">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>الحجوزات</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#orders" class="nav-link" data-tab="orders">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>الطلبات</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#settings" class="nav-link" data-tab="settings">
+                            <i class="fas fa-cogs"></i>
+                            <span>الإعدادات</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="main-content">
+            <!-- الهيدر -->
+            <header class="content-header">
+                <div class="page-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>لوحة التحكم الرئيسية</span>
+                </div>
+                
+                <div class="user-info">
+                    <div class="user-avatar">م</div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        تسجيل الخروج
+                    </button>
+                </div>
+            </header>
+
+            <!-- محتوى التبويبات -->
+            <div class="tab-content active" id="dashboardTab">
+                <!-- الإحصائيات -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalReservations">0</h3>
+                            <p>إجمالي الحجوزات</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="todayOrders">0</h3>
+                            <p>طلبات اليوم</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalRevenue">0</h3>
+                            <p>إجمالي الإيرادات</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="newCustomers">0</h3>
+                            <p>عملاء جدد</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- آخر الحجوزات -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3><i class="fas fa-history"></i> آخر الحجوزات</h3>
+                        <div class="table-actions">
+                            <button class="action-btn btn-primary" onclick="refreshData()">
+                                <i class="fas fa-sync-alt"></i>
+                                تحديث
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table id="recentReservationsTable">
+                            <thead>
+                                <tr>
+                                    <th>الاسم</th>
+                                    <th>الهاتف</th>
+                                    <th>التاريخ</th>
+                                    <th>الفرع</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- سيتم ملؤها بالجافاسكريبت -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب المنيو -->
+            <div class="tab-content" id="menuTab">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3><i class="fas fa-utensils"></i> إدارة المنيو</h3>
+                        <div class="table-actions">
+                            <button class="action-btn btn-success" onclick="showAddItemModal()">
+                                <i class="fas fa-plus"></i>
+                                إضافة صنف
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 25px;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>اسم الصنف</label>
+                                <input type="text" id="itemName" class="form-control" placeholder="أدخل اسم الصنف">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>القسم</label>
+                                <select id="itemCategory" class="form-control">
+                                    <option value="cold">مشروبات باردة</option>
+                                    <option value="hot">مشروبات ساخنة</option>
+                                    <option value="desserts">حلويات</option>
+                                    <option value="milkshake">ميلك شيك</option>
+                                    <option value="cocktails">كوكتيلات</option>
+                                    <option value="argila">أرجيلة</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>السعر (ل.س)</label>
+                                <input type="number" id="itemPrice" class="form-control" placeholder="أدخل السعر">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>النكهات (اختياري)</label>
+                                <input type="text" id="itemFlavors" class="form-control" placeholder="أدخل النكهات">
+                            </div>
+                        </div>
+                        
+                        <button class="action-btn btn-primary" onclick="addMenuItem()" style="width: 100%;">
+                            <i class="fas fa-save"></i>
+                            حفظ الصنف
+                        </button>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table id="menuItemsTable">
+                            <thead>
+                                <tr>
+                                    <th>الاسم</th>
+                                    <th>القسم</th>
+                                    <th>السعر</th>
+                                    <th>النكهات</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- سيتم ملؤها بالجافاسكريبت -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب الحجوزات -->
+            <div class="tab-content" id="reservationsTab">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3><i class="fas fa-calendar-check"></i> إدارة الحجوزات</h3>
+                        <div class="table-actions">
+                            <button class="action-btn btn-primary" onclick="exportReservations()">
+                                <i class="fas fa-download"></i>
+                                تصدير البيانات
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table id="allReservationsTable">
+                            <thead>
+                                <tr>
+                                    <th>رقم الحجز</th>
+                                    <th>الاسم</th>
+                                    <th>الهاتف</th>
+                                    <th>التاريخ</th>
+                                    <th>الفرع</th>
+                                    <th>القسم</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- سيتم ملؤها بالجافاسكريبت -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تبويب الإعدادات -->
+            <div class="tab-content" id="settingsTab">
+                <div class="form-card">
+                    <h3 style="color: var(--primary-color); margin-bottom: 30px;">
+                        <i class="fas fa-cogs"></i> إعدادات الموقع
+                    </h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>عنوان الفرع الأول</label>
+                            <input type="text" id="branch1Address" class="form-control" value="ادلب / اريحا - تحت جسر الحديد">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>هاتف الفرع الأول</label>
+                            <input type="text" id="branch1Phone" class="form-control" value="0990 123 456">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>عنوان الفرع الثاني</label>
+                            <input type="text" id="branch2Address" class="form-control" value="ادلب / اريحا - طريق ال M4، بعد كازية الفاعور">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>هاتف الفرع الثاني</label>
+                            <input type="text" id="branch2Phone" class="form-control" value="0990 987 654">
+                        </div>
+                    </div>
+                    
+                    <h4 style="color: var(--primary-color); margin: 40px 0 20px;">تغيير كلمة المرور</h4>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>كلمة المرور الجديدة</label>
+                            <input type="password" id="newPassword" class="form-control" placeholder="أدخل كلمة المرور الجديدة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>تأكيد كلمة المرور</label>
+                            <input type="password" id="confirmPassword" class="form-control" placeholder="أعد إدخال كلمة المرور">
+                        </div>
+                    </div>
+                    
+                    <button class="action-btn btn-success" onclick="saveSettings()" style="width: 100%;">
+                        <i class="fas fa-save"></i>
+                        حفظ جميع الإعدادات
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // === نظام لوحة التحكم ===
+        class AdminPanel {
+            constructor() {
+                this.currentUser = null;
+                this.init();
+            }
+            
+            init() {
+                this.checkLogin();
+                this.setupEventListeners();
+                this.loadData();
+            }
+            
+            checkLogin() {
+                const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+                
+                if (isLoggedIn) {
+                    this.showDashboard();
+                } else {
+                    this.showLogin();
+                }
+            }
+            
+            showLogin() {
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('adminDashboard').style.display = 'none';
+            }
+            
+            showDashboard() {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+            }
+            
+            setupEventListeners() {
+                // نموذج الدخول
+                document.getElementById('loginForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleLogin();
+                });
+                
+                // تبديل التبويبات
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.switchTab(e.currentTarget.dataset.tab);
+                    });
+                });
+            }
+            
+            handleLogin() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // تحقق من بيانات الدخول
+                if (username === 'admin' && password === 'runivo123') {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    this.showDashboard();
+                    this.loadData();
+                    
+                    // إظهار تنبيه النجاح
+                    this.showAlert('تم الدخول بنجاح', 'success');
+                } else {
+                    this.showAlert('اسم المستخدم أو كلمة المرور غير صحيحة', 'danger');
+                }
+            }
+            
+            logout() {
+                localStorage.removeItem('adminLoggedIn');
+                this.showLogin();
+            }
+            
+            switchTab(tabName) {
+                // إخفاء كل التبويبات
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // إزالة النشط من كل الروابط
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // إظهار التبويب المحدد
+                document.getElementById(`${tabName}Tab`).classList.add('active');
+                
+                // تفعيل الرابط النشط
+                document.querySelector(`.nav-link[data-tab="${tabName}"]`).classList.add('active');
+                
+                // تحديث بيانات التبويب إذا لزم
+                if (tabName === 'reservations') {
+                    this.loadReservations();
+                } else if (tabName === 'menu') {
+                    this.loadMenuItems();
+                }
+            }
+            
+            loadData() {
+                this.loadStatistics();
+                this.loadRecentReservations();
+                this.loadMenuItems();
+                this.loadReservations();
+            }
+            
+            loadStatistics() {
+                const reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                
+                // إجمالي الحجوزات
+                document.getElementById('totalReservations').textContent = reservations.length;
+                
+                // طلبات اليوم
+                const today = new Date().toISOString().split('T')[0];
+                const todayReservations = reservations.filter(r => r.date === today).length;
+                document.getElementById('todayOrders').textContent = todayReservations;
+                
+                // الإيرادات (حساب افتراضي)
+                const revenue = reservations.length * 5000;
+                document.getElementById('totalRevenue').textContent = revenue.toLocaleString() + ' ل.س';
+                
+                // العملاء الجدد
+                const uniquePhones = [...new Set(reservations.map(r => r.phone))];
+                document.getElementById('newCustomers').textContent = uniquePhones.length;
+            }
+            
+            loadRecentReservations() {
+                const reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                const tbody = document.querySelector('#recentReservationsTable tbody');
+                
+                // ترتيب من الأحدث
+                const recentReservations = reservations.slice(-5).reverse();
+                
+                tbody.innerHTML = '';
+                
+                recentReservations.forEach(res => {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td>${res.name}</td>
+                        <td>${res.phone}</td>
+                        <td>${res.date} ${res.time}</td>
+                        <td>${res.branch}</td>
+                        <td>
+                            <span class="status-badge ${this.getStatusClass(res.status)}">
+                                ${this.getStatusText(res.status)}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="action-btn btn-sm btn-success" onclick="admin.confirmReservation('${res.id}')">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="action-btn btn-sm btn-warning" onclick="admin.editReservation('${res.id}')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn btn-sm btn-danger" onclick="admin.cancelReservation('${res.id}')">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </td>
+                    `;
+                    
+                    tbody.appendChild(row);
+                });
+                
+                if (recentReservations.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 30px; color: #999;">
+                                لا توجد حجوزات بعد
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            loadMenuItems() {
+                const menuData = JSON.parse(localStorage.getItem('runivo_menu')) || this.getDefaultMenuData();
+                const tbody = document.querySelector('#menuItemsTable tbody');
+                
+                tbody.innerHTML = '';
+                
+                let itemCount = 0;
+                for (const category in menuData) {
+                    menuData[category].forEach((item, index) => {
+                        itemCount++;
+                        
+                        const categoryName = this.getCategoryName(category);
+                        
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${item.name}</td>
+                            <td>${categoryName}</td>
+                            <td>${item.price} ل.س</td>
+                            <td>${item.flavors || '-'}</td>
+                            <td>
+                                <button class="action-btn btn-sm btn-warning" onclick="admin.editMenuItem('${category}', ${index})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn btn-sm btn-danger" onclick="admin.deleteMenuItem('${category}', ${index})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        `;
+                        
+                        tbody.appendChild(row);
+                    });
+                }
+                
+                if (itemCount === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 30px; color: #999;">
+                                لا توجد أصناف في المنيو
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            loadReservations() {
+                const reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                const tbody = document.querySelector('#allReservationsTable tbody');
+                
+                // ترتيب من الأحدث
+                reservations.sort((a, b) => new Date(b.date + ' ' + b.time) - new Date(a.date + ' ' + a.time));
+                
+                tbody.innerHTML = '';
+                
+                reservations.forEach(res => {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td>#${res.id}</td>
+                        <td>${res.name}</td>
+                        <td>${res.phone}</td>
+                        <td>${res.date} ${res.time}</td>
+                        <td>${res.branch}</td>
+                        <td>${res.section || '-'}</td>
+                        <td>
+                            <span class="status-badge ${this.getStatusClass(res.status)}">
+                                ${this.getStatusText(res.status)}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="action-btn btn-sm btn-success" onclick="admin.confirmReservation('${res.id}')">
+                                تأكيد
+                            </button>
+                            <button class="action-btn btn-sm btn-danger" onclick="admin.cancelReservation('${res.id}')">
+                                إلغاء
+                            </button>
+                            <button class="action-btn btn-sm btn-warning" onclick="admin.viewReservation('${res.id}')">
+                                تفاصيل
+                            </button>
+                        </td>
+                    `;
+                    
+                    tbody.appendChild(row);
+                });
+                
+                if (reservations.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="8" style="text-align: center; padding: 30px; color: #999;">
+                                لا توجد حجوزات بعد
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            getDefaultMenuData() {
+                return {
+                    cold: [
+                        { name: "JACK Wrestler (أحمر)", price: "4,000", flavors: "" },
+                        { name: "Monster (أخضر)", price: "4,000", flavors: "" },
+                        { name: "Red Bull", price: "3,000", flavors: "" }
+                    ],
+                    hot: [
+                        { name: "1×3", price: "2,500", flavors: "" },
+                        { name: "نسكافيه", price: "2,000", flavors: "" }
+                    ]
+                };
+            }
+            
+            getCategoryName(category) {
+                const categories = {
+                    'cold': 'مشروبات باردة',
+                    'hot': 'مشروبات ساخنة',
+                    'desserts': 'حلويات',
+                    'milkshake': 'ميلك شيك',
+                    'cocktails': 'كوكتيلات',
+                    'argila': 'أرجيلة'
+                };
+                return categories[category] || category;
+            }
+            
+            getStatusClass(status) {
+                switch(status) {
+                    case 'confirmed': return 'status-confirmed';
+                    case 'cancelled': return 'status-cancelled';
+                    default: return 'status-pending';
+                }
+            }
+            
+            getStatusText(status) {
+                switch(status) {
+                    case 'confirmed': return 'مؤكد';
+                    case 'cancelled': return 'ملغي';
+                    default: return 'قيد الانتظار';
+                }
+            }
+            
+            addMenuItem() {
+                const name = document.getElementById('itemName').value;
+                const category = document.getElementById('itemCategory').value;
+                const price = document.getElementById('itemPrice').value;
+                const flavors = document.getElementById('itemFlavors').value;
+                
+                if (!name || !price) {
+                    this.showAlert('يرجى ملء جميع الحقول المطلوبة', 'warning');
+                    return;
+                }
+                
+                let menuData = JSON.parse(localStorage.getItem('runivo_menu')) || {};
+                
+                if (!menuData[category]) {
+                    menuData[category] = [];
+                }
+                
+                menuData[category].push({
+                    name,
+                    price,
+                    flavors
+                });
+                
+                localStorage.setItem('runivo_menu', JSON.stringify(menuData));
+                
+                // إعادة تحميل البيانات
+                this.loadMenuItems();
+                this.loadStatistics();
+                
+                // إعادة تعيين الحقول
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemPrice').value = '';
+                document.getElementById('itemFlavors').value = '';
+                
+                this.showAlert('تم إضافة الصنف بنجاح', 'success');
+            }
+            
+            editMenuItem(category, index) {
+                const menuData = JSON.parse(localStorage.getItem('runivo_menu')) || {};
+                const item = menuData[category][index];
+                
+                document.getElementById('itemName').value = item.name;
+                document.getElementById('itemCategory').value = category;
+                document.getElementById('itemPrice').value = item.price.replace(/,/g, '');
+                document.getElementById('itemFlavors').value = item.flavors || '';
+                
+                // تغيير الزر إلى تحديث
+                const addBtn = document.querySelector('#menuTab .action-btn');
+                addBtn.innerHTML = '<i class="fas fa-save"></i> تحديث الصنف';
+                addBtn.onclick = () => this.updateMenuItem(category, index);
+                
+                // التمرير إلى الأعلى
+                document.getElementById('menuTab').scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            updateMenuItem(category, index) {
+                const name = document.getElementById('itemName').value;
+                const newCategory = document.getElementById('itemCategory').value;
+                const price = document.getElementById('itemPrice').value;
+                const flavors = document.getElementById('itemFlavors').value;
+                
+                let menuData = JSON.parse(localStorage.getItem('runivo_menu')) || {};
+                
+                if (category !== newCategory) {
+                    // نقل إلى قسم جديد
+                    menuData[category].splice(index, 1);
+                    if (!menuData[newCategory]) {
+                        menuData[newCategory] = [];
+                    }
+                    menuData[newCategory].push({ name, price, flavors });
+                } else {
+                    // تحديث في نفس القسم
+                    menuData[category][index] = { name, price, flavors };
+                }
+                
+                localStorage.setItem('runivo_menu', JSON.stringify(menuData));
+                
+                // إعادة تعيين الزر
+                const addBtn = document.querySelector('#menuTab .action-btn');
+                addBtn.innerHTML = '<i class="fas fa-save"></i> حفظ الصنف';
+                addBtn.onclick = () => this.addMenuItem();
+                
+                // إعادة تعيين الحقول
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemPrice').value = '';
+                document.getElementById('itemFlavors').value = '';
+                
+                this.loadMenuItems();
+                this.showAlert('تم تحديث الصنف بنجاح', 'success');
+            }
+            
+            deleteMenuItem(category, index) {
+                if (confirm('هل أنت متأكد من حذف هذا الصنف؟')) {
+                    let menuData = JSON.parse(localStorage.getItem('runivo_menu')) || {};
+                    menuData[category].splice(index, 1);
+                    localStorage.setItem('runivo_menu', JSON.stringify(menuData));
+                    this.loadMenuItems();
+                    this.showAlert('تم حذف الصنف بنجاح', 'success');
+                }
+            }
+            
+            confirmReservation(reservationId) {
+                let reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                const reservation = reservations.find(r => r.id == reservationId);
+                
+                if (reservation) {
+                    reservation.status = 'confirmed';
+                    localStorage.setItem('runivo_reservations', JSON.stringify(reservations));
+                    this.loadRecentReservations();
+                    this.loadReservations();
+                    this.loadStatistics();
+                    this.showAlert('تم تأكيد الحجز بنجاح', 'success');
+                }
+            }
+            
+            cancelReservation(reservationId) {
+                let reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                const reservation = reservations.find(r => r.id == reservationId);
+                
+                if (reservation) {
+                    reservation.status = 'cancelled';
+                    localStorage.setItem('runivo_reservations', JSON.stringify(reservations));
+                    this.loadRecentReservations();
+                    this.loadReservations();
+                    this.loadStatistics();
+                    this.showAlert('تم إلغاء الحجز بنجاح', 'success');
+                }
+            }
+            
+            viewReservation(reservationId) {
+                const reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                const reservation = reservations.find(r => r.id == reservationId);
+                
+                if (reservation) {
+                    const details = `
+                        تفاصيل الحجز #${reservation.id}:
+                        
+                        الاسم: ${reservation.name}
+                        الهاتف: ${reservation.phone}
+                        التاريخ: ${reservation.date}
+                        الوقت: ${reservation.time}
+                        الفرع: ${reservation.branch}
+                        القسم: ${reservation.section || 'غير محدد'}
+                        الحالة: ${this.getStatusText(reservation.status)}
+                        ${reservation.notes ? `\nملاحظات: ${reservation.notes}` : ''}
+                    `;
+                    
+                    alert(details);
+                }
+            }
+            
+            saveSettings() {
+                // حفظ إعدادات الفروع
+                const settings = {
+                    branch1Address: document.getElementById('branch1Address').value,
+                    branch1Phone: document.getElementById('branch1Phone').value,
+                    branch2Address: document.getElementById('branch2Address').value,
+                    branch2Phone: document.getElementById('branch2Phone').value
+                };
+                
+                localStorage.setItem('runivo_settings', JSON.stringify(settings));
+                
+                // تغيير كلمة المرور إذا تم إدخالها
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (newPassword) {
+                    if (newPassword === confirmPassword) {
+                        // في التطبيق الحقيقي، هنا يتم إرسال كلمة المرور المشفرة إلى السيرفر
+                        document.getElementById('newPassword').value = '';
+                        document.getElementById('confirmPassword').value = '';
+                        this.showAlert('تم حفظ الإعدادات وتغيير كلمة المرور', 'success');
+                    } else {
+                        this.showAlert('كلمتا المرور غير متطابقتين', 'danger');
+                        return;
+                    }
+                } else {
+                    this.showAlert('تم حفظ الإعدادات بنجاح', 'success');
+                }
+            }
+            
+            exportReservations() {
+                const reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                
+                if (reservations.length === 0) {
+                    this.showAlert('لا توجد بيانات للتصدير', 'warning');
+                    return;
+                }
+                
+                // إنشاء CSV
+                let csv = 'رقم الحجز,الاسم,الهاتف,التاريخ,الوقت,الفرع,القسم,الحالة,ملاحظات\n';
+                
+                reservations.forEach(res => {
+                    csv += `#${res.id},${res.name},${res.phone},${res.date},${res.time},${res.branch},${res.section || ''},${this.getStatusText(res.status)},${res.notes || ''}\n`;
+                });
+                
+                // إنشاء ملف وتنزيله
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `runivo_reservations_${new Date().toISOString().split('T')[0]}.csv`;
+                a.click();
+                
+                this.showAlert('تم تصدير البيانات بنجاح', 'success');
+            }
+            
+            showAlert(message, type) {
+                // إزالة التنبيهات القديمة
+                document.querySelectorAll('.alert').forEach(alert => alert.remove());
+                
+                // إنشاء تنبيه جديد
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type}`;
+                alertDiv.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'times-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                // إضافة التنبيه
+                document.querySelector('.main-content').prepend(alertDiv);
+                
+                // إزالة التنبيه بعد 5 ثواني
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 5000);
+            }
+            
+            refreshData() {
+                this.loadData();
+                this.showAlert('تم تحديث البيانات', 'success');
+            }
+        }
+
+        // === تشغيل لوحة التحكم ===
+        let admin;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            admin = new AdminPanel();
+        });
+        
+        // دوال عامة للاستدعاء من الأزرار
+        function logout() {
+            admin.logout();
+        }
+        
+        function refreshData() {
+            admin.refreshData();
+        }
+        
+        function exportReservations() {
+            admin.exportReservations();
+        }
+        
+        function saveSettings() {
+            admin.saveSettings();
+        }
+        
+        function showAddItemModal() {
+            admin.switchTab('menu');
+        }
+        
+        // جعل الكائن admin متاحاً عالمياً
+        window.admin = admin;
+    </script>
+</body>
+</html>

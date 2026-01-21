@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUNIVO CAFE | رونيفو كافيه - ادلب/أريحا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* === نظام التصميم الاحترافي === */
+        :root {
+            /* نظام ألوان احترافي */
+            --primary-dark: #1A1F2C;
+            --primary-main: #2C3E50;
+            --primary-light: #3498DB;
+            --secondary-dark: #8B4513;
+            --secondary-main: #D35400;
+            --secondary-light: #E67E22;
+            --accent-gold: #D4AF37;
+            --accent-copper: #B87333;
+            --neutral-white: #FFFFFF;
+            --neutral-light: #F8F9FA;
+            --neutral-gray: #6C757D;
+            --neutral-dark: #343A40;
+            
+            /* نظام الظلال */
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+            --shadow-xl: 0 16px 48px rgba(0,0,0,0.2);
+            
+            /* أنماط الزوايا */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+            
+            /* انتقالات */
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* أحجام الخطوط */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            --text-5xl: 3rem;
+        }
+
+        /* === إعادة تعيين وإعدادات أساسية === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+            line-height: 1.7;
+            color: var(--neutral-dark);
+            background-color: var(--neutral-light);
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--neutral-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary-main), var(--primary-light));
+            border-radius: var(--radius-full);
+        }
+
+        /* === الهيدر الزجاجي الاحترافي === */
+        .navbar-glass {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: all var(--transition-normal);
+            height: 80px;
+        }
+
+        .navbar-glass.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-md);
+            height: 70px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+        }
+
+        .logo-wrapper:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-size: 0.9rem;
+            color: var(--neutral-gray);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2px;
+            align-items: center;
+        }
+
+        .nav-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: var(--neutral-dark);
+            font-weight: 600;
+            font-size: var(--text-base);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-link:hover {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--primary-main);
+        }
+
+        .nav-link:hover i {
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), rgba(155, 89, 182, 0.1));
+            color: var(--primary-main);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary-light);
+            border-radius: 50%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-weight: 700;
+            font-size: var(--text-base);
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            overflow: hidden;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--accent-gold), #F7EF8A);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            font-weight: 800;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* === قسم الهيرو مع تأثير البارالاكس === */
+        .hero-parallax {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: linear-gradient(rgba(26, 31, 44, 0.85), rgba(44, 62, 80, 0.9)),
+                        url('https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: var(--text-5xl);
+            font-weight: 900;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #FFFFFF, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-xl);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        /* === قسم الفروع بتصميم حديث === */
+        .branches-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: var(--text-4xl);
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-main), var(--accent-gold));
+            border-radius: var(--radius-full);
+        }
+
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .branch-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .branch-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .branch-header {
+            padding: 30px 30px 0;
+        }
+
+        .branch-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: var(--text-2xl);
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .branch-header h3 i {
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+        }
+
+        .branch-body {
+            padding: 30px;
+        }
+
+        .branch-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-item i {
+            color: var(--primary-main);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        /* === قسم المنيو التفاعلي === */
+        .menu-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .menu-filter-bar {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .filter-search {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .filter-search input {
+            width: 100%;
+            padding: 18px 50px 18px 25px;
+            border: 2px solid var(--neutral-light);
+            border-radius: var(--radius-full);
+            font-size: var(--text-base);
+            transition: all var(--transition-normal);
+            background: var(--neutral-light);
+        }
+
+        .filter-search input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        .filter-search i {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neutral-gray);
+            font-size: 1.2rem;
+        }
+
+        .filter-categories {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--neutral-light);
+            border: 2px solid transparent;
+            border-radius: var(--radius-full);
+            color: var(--neutral-dark);
+            font-weight: 700;
+            font-size: var(--text-base);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .filter-btn i {
+            font-size: 1.2rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .filter-btn:hover {
+            background: white;
+            border-color: var(--primary-light);
+            color: var(--primary-main);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-btn:hover i {
+            transform: scale(1.2);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            color: white;
+            border-color: var(--primary-main);
+            box-shadow: var(--shadow-md);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .menu-item:nth-child(2) { animation-delay: 0.1s; }
+        .menu-item:nth-child(3) { animation-delay: 0.2s; }
+        .menu-item:nth-child(4) { animation-delay: 0.3s; }
+        .menu-item:nth-child(5) { animation-delay: 0.4s; }
+        .menu-item:nth-child(6) { animation-delay: 0.5s; }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .item-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--neutral-light), #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-image i {
+            font-size: 4rem;
+            color: var(--primary-light);
+            opacity: 0.5;
+            transition: all var(--transition-normal);
+        }
+
+        .menu-item:hover .item-image i {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        .item-content {
+            padding: 25px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .item-title {
+            font-size: var(--text-xl);
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1.3;
+        }
+
+        .item-price {
+            font-size: var(--text-2xl);
+            font-weight: 900;
+            color: var(--primary-main);
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .item-description {
+            color: var(--neutral-gray);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 6px 15px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: var(--neutral-dark);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        /* === قسم الحجوزات المتقدم === */
+        .reservation-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            border-top: 5px solid transparent;
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-card.women {
+            border-top-color: #FF69B4;
+        }
+
+        .section-card.family {
+            border-top-color: #32CD32;
+        }
+
+        .section-card.youth {
+            border-top-color: #1E90FF;
+        }
+
+        .section-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            height: 80px;
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+
+        .section-card.women .section-icon {
+            color: #FF69B4;
+        }
+
+        .section-card.family .section-icon {
+            color: #32CD32;
+        }
+
+        .section-card.youth .section-icon {
+            color: #1E90FF;
+        }
+
+        .section-card h3 {
+            font-size: var(--text-2xl);
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .reservation-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 50px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reservation-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-main), var(--accent-gold));
+        }
+
+        .form-title {
+            text-align: center;
+            color: var(--primary-dark);
+            margin-bottom: 40px;
+            font-size: var(--text-3xl);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: var(--text-base);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--neutral-light);
+            border-radius: var(--radius-md);
+            font-size: var(--text-base);
+            transition: all var(--transition-normal);
+            background: var(--neutral-light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--text-lg);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            margin-top: 20px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* === الفوتر المتطور === */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark), #2C3E50);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--secondary-main));
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: var(--text-xl);
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-gold);
+            border-radius: var(--radius-full);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+            transform: translateX(-5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all var(--transition-normal);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: var(--text-sm);
+        }
+
+        /* === مؤشر التقدم === */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-main), var(--accent-gold));
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        /* === أنيميشن === */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* === التجاوب === */
+        @media (max-width: 1200px) {
+            .branches-grid {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--primary-dark);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero-title {
+                font-size: var(--text-4xl);
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: var(--text-3xl);
+            }
+            
+            .hero-subtitle {
+                font-size: var(--text-lg);
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reservation-form-container {
+                padding: 30px 20px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* === إشعارات === */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 20px 25px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            transform: translateX(150%);
+            transition: transform var(--transition-normal);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-gold), #F7EF8A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+        }
+
+        /* === تحميل === */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top-color: var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- تحميل -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- مؤشر التقدم -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- الهيدر -->
+    <nav class="navbar-glass" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo-wrapper">
+                <div class="logo-icon">
+                    <i class="fas fa-mug-hot"></i>
+                </div>
+                <div class="logo-text">
+                    <div class="logo-main">RUNIVO</div>
+                    <div class="logo-sub">CAFE</div>
+                </div>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    الرئيسية
+                </a>
+                <a href="#branches" class="nav-link">
+                    <i class="fas fa-map-marker-alt"></i>
+                    الفروع
+                </a>
+                <a href="#menu" class="nav-link">
+                    <i class="fas fa-book-open"></i>
+                    المنيو
+                </a>
+                <a href="#reservation" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i>
+                    الحجوزات
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <a href="admin.html" class="btn btn-primary">
+                    <i class="fas fa-cog"></i>
+                    لوحة التحكم
+                </a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- الهيرو -->
+    <section class="hero-parallax" id="home">
+        <div class="parallax-bg" id="parallaxBg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate__animated animate__fadeInDown">
+                RUNIVO CAFE
+            </h1>
+            <p class="hero-subtitle animate__animated animate__fadeInUp">
+                تجربة قهوة استثنائية في قلب ادلب/أريحا<br>
+                حيث تلتقي النكهات المميزة مع الأجواء الراقية
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-gold animate__animated animate__fadeInUp">
+                    <i class="fas fa-utensils"></i>
+                    تصفح المنيو
+                </a>
+                <a href="#reservation" class="btn btn-primary animate__animated animate__fadeInUp">
+                    <i class="fas fa-calendar-check"></i>
+                    احجز طاولتك
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفروع -->
+    <section class="branches-section" id="branches">
+        <div class="section-title">
+            <h2>فروعنا</h2>
+            <p>زورونا في أي من فرعينا الاستثنائيين</p>
+        </div>
+        
+        <div class="branches-grid">
+            <div class="branch-card animate__animated">
+                <div class="branch-header">
+                    <h3>
+                        <i class="fas fa-bridge"></i>
+                        الفرع الأول
+                    </h3>
+                </div>
+                <div class="branch-body">
+                    <div class="branch-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>الموقع:</strong>
+                                <p>ادلب / اريحا - تحت جسر الحديد</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>ساعات العمل:</strong>
+                                <p>8:00 صباحاً - 2:00 ليلاً</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>الهاتف:</strong>
+                                <p>0990 123 456</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="branch-card animate__animated">
+                <div class="branch-header">
+                    <h3>
+                        <i class="fas fa-road"></i>
+                        الفرع الثاني
+                    </h3>
+                </div>
+                <div class="branch-body">
+                    <div class="branch-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>الموقع:</strong>
+                                <p>ادلب / اريحا - طريق ال M4، بعد كازية الفاعور</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>ساعات العمل:</strong>
+                                <p>9:00 صباحاً - 1:00 ليلاً</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>الهاتف:</strong>
+                                <p>0990 987 654</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المنيو -->
+    <section class="menu-section" id="menu">
+        <div class="section-title">
+            <h2>قائمتنا</h2>
+            <p>اختر من بين تشكيلتنا الواسعة من المشروبات والأطعمة</p>
+        </div>
+        
+        <div class="menu-filter-bar">
+            <div class="filter-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="menuSearch" placeholder="ابحث في المنيو...">
+            </div>
+            
+            <div class="filter-categories">
+                <button class="filter-btn active" data-category="all">
+                    <i class="fas fa-utensils"></i>
+                    الكل
+                </button>
+                <button class="filter-btn" data-category="cold">
+                    <i class="fas fa-glass-whiskey"></i>
+                    مشروبات باردة
+                </button>
+                <button class="filter-btn" data-category="hot">
+                    <i class="fas fa-mug-hot"></i>
+                    مشروبات ساخنة
+                </button>
+                <button class="filter-btn" data-category="desserts">
+                    <i class="fas fa-birthday-cake"></i>
+                    حلويات
+                </button>
+                <button class="filter-btn" data-category="milkshake">
+                    <i class="fas fa-blender"></i>
+                    ميلك شيك
+                </button>
+                <button class="filter-btn" data-category="cocktails">
+                    <i class="fas fa-cocktail"></i>
+                    كوكتيلات
+                </button>
+                <button class="filter-btn" data-category="argila">
+                    <i class="fas fa-smoking"></i>
+                    أرجيلة
+                </button>
+            </div>
+        </div>
+        
+        <div class="menu-grid" id="menuContainer">
+            <!-- سيتم ملؤها بالجافاسكريبت -->
+        </div>
+    </section>
+
+    <!-- الحجوزات -->
+    <section class="reservation-section" id="reservation">
+        <div class="section-title">
+            <h2>حجز طاولة</h2>
+            <p>اختر القسم المناسب واحجز طاولتك الآن</p>
+        </div>
+        
+        <div class="sections-grid">
+            <div class="section-card women animate__animated">
+                <div class="section-icon">
+                    <i class="fas fa-female"></i>
+                </div>
+                <h3>قسم النساء</h3>
+                <p>مساحة خاصة ومريحة للنساء</p>
+                <p>ديكور أنيق وخدمة متميزة</p>
+            </div>
+            
+            <div class="section-card family animate__animated">
+                <div class="section-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>قسم العائلات</h3>
+                <p>مساحات واسعة تناسب العائلات</p>
+                <p>مقاعد مريحة لجميع الأعمار</p>
+            </div>
+            
+            <div class="section-card youth animate__animated">
+                <div class="section-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>قسم الشباب</h3>
+                <p>أجواء شبابية وطاولات جماعية</p>
+                <p>ألعاب ترفيهية وتلفزيونات</p>
+            </div>
+        </div>
+        
+        <div class="reservation-form-container animate__animated">
+            <h3 class="form-title">احجز طاولتك الآن</h3>
+            
+            <form id="reservationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name" class="form-label">الاسم الكامل</label>
+                        <input type="text" id="name" class="form-control" required placeholder="أدخل اسمك الكامل">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">رقم الهاتف</label>
+                        <input type="tel" id="phone" class="form-control" required placeholder="مثال: 0990123456">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date" class="form-label">التاريخ</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="time" class="form-label">الوقت</label>
+                        <select id="time" class="form-control" required>
+                            <option value="">اختر الوقت</option>
+                            <option value="08:00">8:00 صباحاً</option>
+                            <option value="10:00">10:00 صباحاً</option>
+                            <option value="12:00">12:00 ظهراً</option>
+                            <option value="14:00">2:00 ظهراً</option>
+                            <option value="16:00">4:00 عصراً</option>
+                            <option value="18:00">6:00 مساءً</option>
+                            <option value="20:00">8:00 مساءً</option>
+                            <option value="22:00">10:00 مساءً</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="branch" class="form-label">الفرع</label>
+                        <select id="branch" class="form-control" required>
+                            <option value="">اختر الفرع</option>
+                            <option value="فرع جسر الحديد">فرع جسر الحديد</option>
+                            <option value="فرع طريق M4">فرع طريق M4</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="section" class="form-label">القسم</label>
+                        <select id="section" class="form-control" required>
+                            <option value="">اختر القسم</option>
+                            <option value="قسم النساء">قسم النساء</option>
+                            <option value="قسم العائلات">قسم العائلات</option>
+                            <option value="قسم الشباب">قسم الشباب</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="notes" class="form-label">ملاحظات إضافية (اختياري)</label>
+                        <textarea id="notes" class="form-control" rows="3" placeholder="طلبات خاصة، مناسبة، الخ..."></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" class="form-submit">
+                    <i class="fas fa-check-circle"></i>
+                    تأكيد الحجز
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>RUNIVO CAFE</h3>
+                    <p>أفضل تجربة قهوة في ادلب/أريحا، حيث الجودة تلتقي بالراحة والأجواء العائلية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-snapchat"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="#menu"><i class="fas fa-chevron-left"></i> المنيو</a></li>
+                        <li><a href="#branches"><i class="fas fa-chevron-left"></i> الفروع</a></li>
+                        <li><a href="#reservation"><i class="fas fa-chevron-left"></i> الحجوزات</a></li>
+                        <li><a href="admin.html"><i class="fas fa-chevron-left"></i> لوحة التحكم</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:0990123456"><i class="fas fa-phone"></i> 0990 123 456</a></li>
+                        <li><a href="tel:0990987654"><i class="fas fa-phone"></i> 0990 987 654</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@runivocafe.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> ادلب/أريحا - سوريا</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 RUNIVO CAFE. جميع الحقوق محفوظة.</p>
+                <p style="margin-top: 10px; color: var(--accent-gold);">تم التطوير بواسطة MOOHAMED</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- الإشعار -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <div>
+            <strong id="notificationTitle">تم بنجاح!</strong>
+            <p id="notificationMessage">العملية تمت بنجاح</p>
+        </div>
+    </div>
+
+    <script>
+        // === البيانات والمتغيرات ===
+        const menuData = {
+            cold: [
+                { 
+                    name: "JACK Wrestler (أحمر)", 
+                    price: "4,000 ل.س",
+                    icon: "fas fa-glass-whiskey",
+                    category: "cold",
+                    tags: ["مشروب طاقة", "علبة"]
+                },
+                { 
+                    name: "Monster (أخضر)", 
+                    price: "4,000 ل.س",
+                    icon: "fas fa-bolt",
+                    category: "cold",
+                    tags: ["مشروب طاقة", "علبة"]
+                },
+                { 
+                    name: "Red Bull", 
+                    price: "3,000 ل.س",
+                    icon: "fas fa-tint",
+                    category: "cold",
+                    tags: ["مشروب طاقة", "صغيرة"]
+                },
+                { 
+                    name: "بيبسي", 
+                    price: "1,500 ل.س",
+                    icon: "fas fa-wine-bottle",
+                    category: "cold",
+                    tags: ["غازية", "زجاجة"]
+                },
+                { 
+                    name: "سفن اب 7Up", 
+                    price: "1,500 ل.س",
+                    icon: "fas fa-lemon",
+                    category: "cold",
+                    tags: ["غازية", "ليمون"]
+                },
+                { 
+                    name: "كوكاكولا", 
+                    price: "1,500 ل.س",
+                    icon: "fas fa-wine-bottle",
+                    category: "cold",
+                    tags: ["غازية", "زجاجة"]
+                },
+                { 
+                    name: "ميرندا برتقال", 
+                    price: "1,500 ل.س",
+                    icon: "fas fa-orange",
+                    category: "cold",
+                    tags: ["غازية", "برتقال"]
+                },
+                { 
+                    name: "ميرندا تفاح", 
+                    price: "1,500 ل.س",
+                    icon: "fas fa-apple-alt",
+                    category: "cold",
+                    tags: ["غازية", "تفاح"]
+                },
+                { 
+                    name: "كينزا (كل النكهات)", 
+                    price: "2,000 ل.س",
+                    icon: "fas fa-cocktail",
+                    category: "cold",
+                    tags: ["عصير", "متنوع"]
+                },
+                { 
+                    name: "بربيكان (جميع النكهات)", 
+                    price: "2,500 ل.س",
+                    icon: "fas fa-wine-glass-alt",
+                    category: "cold",
+                    tags: ["مشروب", "متنوع"]
+                },
+                { 
+                    name: "قهوة باردة", 
+                    price: "3,000 ل.س",
+                    icon: "fas fa-coffee",
+                    category: "cold",
+                    tags: ["قهوة", "بارد"]
+                },
+                { 
+                    name: "عصير راني (حبيبات/سادة)", 
+                    price: "2,000 ل.س",
+                    icon: "fas fa-wine-glass",
+                    category: "cold",
+                    tags: ["عصير", "طازج"]
+                },
+                { 
+                    name: "XXXL", 
+                    price: "3,500 ل.س",
+                    icon: "fas fa-beer",
+                    category: "cold",
+                    tags: ["مشروب", "كبير"]
+                }
+            ],
+            hot: [
+                { 
+                    name: "1×3", 
+                    price: "2,500 ل.س",
+                    icon: "fas fa-mug-hot",
+                    category: "hot",
+                    tags: ["ساخن", "خاص"]
+                },
+                { 
+                    name: "نسكافيه", 
+                    price: "2,000 ل.س",
+                    icon: "fas fa-mug-hot",
+                    category: "hot",
+                    tags: ["قهوة", "سريعة"]
+                },
+                { 
+                    name: "كابتشينو", 
+                    price: "3,000 ل.س",
+                    icon: "fas fa-coffee",
+                    category: "hot",
+                    tags: ["قهوة", "إيطالية"]
+                },
+                { 
+                    name: "شاي عربي", 
+                    price: "1,500 ل.س",
+                    icon: "fas fa-mug",
+                    category: "hot",
+                    tags: ["شاي", "عربي"]
+                },
+                { 
+                    name: "شاي كرك", 
+                    price: "2,000 ل.س",
+                    icon: "fas fa-mug",
+                    category: "hot",
+                    tags: ["شاي", "كرك"]
+                },
+                { 
+                    name: "قهوة سينغل", 
+                    price: "2,500 ل.س",
+                    icon: "fas fa-coffee",
+                    category: "hot",
+                    tags: ["قهوة", "واحدة"]
+                },
+                { 
+                    name: "قهوة دبل", 
+                    price: "3,000 ل.س",
+                    icon: "fas fa-coffee",
+                    category: "hot",
+                    tags: ["قهوة", "مزدوجة"]
+                }
+            ],
+            desserts: [
+                { 
+                    name: "بان كيك", 
+                    price: "4,000 ل.س",
+                    icon: "fas fa-pancakes",
+                    category: "desserts",
+                    tags: ["حلو", "فطور"]
+                },
+                { 
+                    name: "ميني كيك", 
+                    price: "3,500 ل.س",
+                    icon: "fas fa-birthday-cake",
+                    category: "desserts",
+                    tags: ["كيك", "صغير"]
+                },
+                { 
+                    name: "كريب", 
+                    price: "3,000 ل.س",
+                    icon: "fas fa-cookie-bite",
+                    category: "desserts",
+                    tags: ["حلو", "خفيف"]
+                },
+                { 
+                    name: "كنافة", 
+                    price: "4,500 ل.س",
+                    icon: "fas fa-cheese",
+                    category: "desserts",
+                    tags: ["حلو", "عربي"]
+                },
+                { 
+                    name: "بقلاوة", 
+                    price: "4,000 ل.س",
+                    icon: "fas fa-cookie",
+                    category: "desserts",
+                    tags: ["حلو", "شرقي"]
+                }
+            ],
+            milkshake: [
+                { 
+                    name: "فانيلا", 
+                    price: "3,500 ل.س",
+                    icon: "fas fa-ice-cream",
+                    category: "milkshake",
+                    tags: ["حليب", "فانيلا"]
+                },
+                { 
+                    name: "شوكولاتة", 
+                    price: "3,500 ل.س",
+                    icon: "fas fa-candy-cane",
+                    category: "milkshake",
+                    tags: ["حليب", "شوكولاتة"]
+                },
+                { 
+                    name: "فراولة", 
+                    price: "3,500 ل.س",
+                    icon: "fas fa-strawberry",
+                    category: "milkshake",
+                    tags: ["حليب", "فراولة"]
+                }
+            ],
+            cocktails: [
+                { 
+                    name: "موز وحليب", 
+                    price: "3,000 ل.س",
+                    icon: "fas fa-blender",
+                    category: "cocktails",
+                    tags: ["كوكتيل", "موز"]
+                },
+                { 
+                    name: "موز وحليب وشوكولاتة", 
+                    price: "3,500 ل.س",
+                    icon: "fas fa-blender",
+                    category: "cocktails",
+                    tags: ["كوكتيل", "مختلط"]
+                },
+                { 
+                    name: "فراولة وحليب", 
+                    price: "3,000 ل.س",
+                    icon: "fas fa-blender",
+                    category: "cocktails",
+                    tags: ["كوكتيل", "فراولة"]
+                },
+                { 
+                    name: "كوكتيل موز وفراولة", 
+                    price: "4,000 ل.س",
+                    icon: "fas fa-cocktail",
+                    category: "cocktails",
+                    tags: ["كوكتيل", "فواكه"]
+                },
+                { 
+                    name: "كوكتيل فواكه مشكلة", 
+                    price: "4,500 ل.س",
+                    icon: "fas fa-cocktail",
+                    category: "cocktails",
+                    tags: ["كوكتيل", "متنوع"]
+                }
+            ],
+            argila: [
+                { 
+                    name: "أركيلة بولو", 
+                    price: "8,000 ل.س",
+                    icon: "fas fa-smoking",
+                    category: "argila",
+                    tags: ["أرجيلة", "بولو"]
+                },
+                { 
+                    name: "أركيلة فاخر", 
+                    price: "10,000 ل.س",
+                    icon: "fas fa-smoking",
+                    category: "argila",
+                    tags: ["أرجيلة", "فاخرة"]
+                },
+                { 
+                    name: "أركيلة نخلة", 
+                    price: "9,000 ل.س",
+                    icon: "fas fa-smoking",
+                    category: "argila",
+                    tags: ["أرجيلة", "نخلة"]
+                },
+                { 
+                    name: "أركيلة ليدي", 
+                    price: "7,500 ل.س",
+                    icon: "fas fa-smoking",
+                    category: "argila",
+                    tags: ["أرجيلة", "ليدي"]
+                }
+            ]
+        };
+
+        // === الوظائف الرئيسية ===
+        class RUNIVOApp {
+            constructor() {
+                this.init();
+            }
+            
+            init() {
+                // تهيئة التطبيق
+                this.setupEventListeners();
+                this.loadMenu();
+                this.setupScrollEffects();
+                this.setupProgressBar();
+                this.setupDatePicker();
+                
+                // إخفاء التحميل بعد 2 ثانية
+                setTimeout(() => {
+                    this.hideLoading();
+                }, 2000);
+            }
+            
+            setupEventListeners() {
+                // فلتر المنيو
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.handleFilterClick(e);
+                    });
+                });
+                
+                // بحث المنيو
+                document.getElementById('menuSearch').addEventListener('input', (e) => {
+                    this.handleSearch(e);
+                });
+                
+                // نموذج الحجز
+                document.getElementById('reservationForm').addEventListener('submit', (e) => {
+                    this.handleReservation(e);
+                });
+                
+                // القائمة المتنقلة
+                document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                    this.toggleMobileMenu();
+                });
+                
+                // إغلاق القائمة عند النقر على رابط
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (window.innerWidth < 992) {
+                            this.toggleMobileMenu();
+                        }
+                    });
+                });
+            }
+            
+            loadMenu(category = 'all', searchTerm = '') {
+                const container = document.getElementById('menuContainer');
+                container.innerHTML = '';
+                
+                let items = [];
+                
+                if (category === 'all') {
+                    // جمع كل العناصر
+                    for (const cat in menuData) {
+                        items = items.concat(menuData[cat]);
+                    }
+                } else {
+                    items = menuData[category] || [];
+                }
+                
+                // تطبيق البحث
+                if (searchTerm) {
+                    items = items.filter(item => 
+                        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                }
+                
+                // عرض العناصر
+                items.forEach((item, index) => {
+                    const menuItem = this.createMenuItem(item, index);
+                    container.appendChild(menuItem);
+                });
+                
+                // تطبيق أنيميشن للعناصر الجديدة
+                this.animateMenuItems();
+            }
+            
+            createMenuItem(item, index) {
+                const div = document.createElement('div');
+                div.className = 'menu-item';
+                div.style.animationDelay = `${index * 0.1}s`;
+                
+                div.innerHTML = `
+                    <div class="item-image">
+                        <i class="${item.icon}"></i>
+                    </div>
+                    <div class="item-content">
+                        <div class="item-header">
+                            <h3 class="item-title">${item.name}</h3>
+                            <div class="item-price">${item.price}</div>
+                        </div>
+                        <div class="item-tags">
+                            ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                return div;
+            }
+            
+            animateMenuItems() {
+                const items = document.querySelectorAll('.menu-item');
+                items.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px)';
+                    
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }
+            
+            handleFilterClick(e) {
+                const button = e.currentTarget;
+                const category = button.dataset.category;
+                
+                // تحديث الأزرار النشطة
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                // تحميل المنيو
+                const searchTerm = document.getElementById('menuSearch').value;
+                this.loadMenu(category, searchTerm);
+            }
+            
+            handleSearch(e) {
+                const searchTerm = e.target.value;
+                const activeFilter = document.querySelector('.filter-btn.active');
+                const category = activeFilter ? activeFilter.dataset.category : 'all';
+                
+                this.loadMenu(category, searchTerm);
+            }
+            
+            handleReservation(e) {
+                e.preventDefault();
+                
+                const reservation = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    date: document.getElementById('date').value,
+                    time: document.getElementById('time').value,
+                    branch: document.getElementById('branch').value,
+                    section: document.getElementById('section').value,
+                    notes: document.getElementById('notes').value,
+                    id: Date.now(),
+                    status: 'pending'
+                };
+                
+                // حفظ في localStorage
+                let reservations = JSON.parse(localStorage.getItem('runivo_reservations') || '[]');
+                reservations.push(reservation);
+                localStorage.setItem('runivo_reservations', JSON.stringify(reservations));
+                
+                // إظهار إشعار
+                this.showNotification('تم الحجز بنجاح!', `رقم الحجز: #${reservation.id} - سنتصل بك للتأكيد`);
+                
+                // إعادة تعيين النموذج
+                e.target.reset();
+                this.setupDatePicker();
+            }
+            
+            showNotification(title, message) {
+                const notification = document.getElementById('notification');
+                const notificationTitle = document.getElementById('notificationTitle');
+                const notificationMessage = document.getElementById('notificationMessage');
+                
+                notificationTitle.textContent = title;
+                notificationMessage.textContent = message;
+                
+                notification.classList.add('show');
+                
+                // إخفاء الإشعار بعد 5 ثواني
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }
+            
+            setupScrollEffects() {
+                // تأثير الهيدر عند التمرير
+                window.addEventListener('scroll', () => {
+                    const navbar = document.getElementById('navbar');
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                    
+                    // تأثير البارالاكس
+                    const parallaxBg = document.getElementById('parallaxBg');
+                    if (parallaxBg) {
+                        const scrolled = window.pageYOffset;
+                        parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    }
+                    
+                    // تحديث مؤشر التقدم
+                    this.updateProgressBar();
+                });
+                
+                // أنيميشن للعناصر عند الظهور
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate__fadeInUp');
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                document.querySelectorAll('.branch-card, .section-card').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+            
+            setupProgressBar() {
+                window.addEventListener('scroll', () => {
+                    this.updateProgressBar();
+                });
+            }
+            
+            updateProgressBar() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("progressBar").style.width = scrolled + "%";
+            }
+            
+            setupDatePicker() {
+                const dateInput = document.getElementById('date');
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+                
+                // إضافة 3 أشهر كحد أقصى
+                const maxDate = new Date();
+                maxDate.setMonth(maxDate.getMonth() + 3);
+                dateInput.max = maxDate.toISOString().split('T')[0];
+            }
+            
+            toggleMobileMenu() {
+                const navMenu = document.getElementById('navMenu');
+                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            }
+            
+            hideLoading() {
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                loadingOverlay.style.opacity = '0';
+                
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500);
+            }
+        }
+
+        // === تشغيل التطبيق ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const app = new RUNIVOApp();
+            
+            // إضافة تأثيرات CSS إضافية
+            const style = document.createElement('style');
+            style.textContent = `
+                .menu-item {
+                    animation: fadeInUp 0.6s ease forwards;
+                }
+                
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                .nav-menu {
+                    transition: all 0.3s ease;
+                }
+                
+                @media (max-width: 992px) {
+                    .nav-menu {
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        width: 100%;
+                        background: white;
+                        flex-direction: column;
+                        padding: 20px;
+                        box-shadow: var(--shadow-lg);
+                        display: none;
+                    }
+                    
+                    .nav-menu.show {
+                        display: flex;
+                    }
+                    
+                    .nav-link {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
